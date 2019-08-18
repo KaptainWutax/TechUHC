@@ -10,7 +10,8 @@ public class Commands {
 
     public static void registerCommands(CommandDispatcher<ServerCommandSource> dispatcher, boolean dedicatedServer) {
         registerCommand(dispatcher, CommandRule.getCommand());
-        Commands.registerCommand(dispatcher, new CommandMarkers().getCommand());
+        Commands.registerCommand(dispatcher, CommandMarkers.getCommand());
+
         if(dedicatedServer) {
             //Register dedicated server commands here.
         }

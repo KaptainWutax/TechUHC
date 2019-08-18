@@ -1,12 +1,9 @@
 package kaptainwutax.techuhc.markers;
 
 import kaptainwutax.techuhc.MessageUtils;
-import kaptainwutax.techuhc.command.CommandMarkers;
 import kaptainwutax.techuhc.event.ServerStartEvent;
 import kaptainwutax.techuhc.event.ServerStopEvent;
 import kaptainwutax.techuhc.event.ServerTickEvent;
-import kaptainwutax.techuhc.init.Commands;
-import net.fabricmc.api.ModInitializer;
 import net.minecraft.server.MinecraftServer;
 
 import java.util.concurrent.ThreadFactory;

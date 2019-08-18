@@ -1,7 +1,5 @@
 package kaptainwutax.techuhc;
 
-import kaptainwutax.techuhc.command.CommandRule;
-import kaptainwutax.techuhc.init.Commands;
 import kaptainwutax.techuhc.markers.Markers;
 import net.fabricmc.api.ModInitializer;
 
