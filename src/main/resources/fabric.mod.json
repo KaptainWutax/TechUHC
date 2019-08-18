@@ -6,11 +6,12 @@
   "name": "TechUHC",
   "description": "This is an example description! Tell everyone what your mod is about!",
   "authors": [
-    "Me!"
+    "KaptainWutax",
+    "Arisu"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "homepage": "https://github.com/KaptainWutax/TechUHC",
+    "sources": "https://github.com/KaptainWutax/TechUHC"
   },
 
   "license": "CC0-1.0",
@@ -19,11 +20,12 @@
   "environment": "*",
   "entrypoints": {
     "server": [
-      "kaptainwutax.techuhc.TechUHC"
+      "kaptainwutax.techuhc.TechUHC",
+      "kaptainwutax.techuhc.markers.Markers"
     ]
   },
   "mixins": [
-    "modid.mixins.json"
+    "techuhc.mixins.json"
   ],
 
   "depends": {
