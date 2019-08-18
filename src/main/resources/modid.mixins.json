@@ -3,9 +3,11 @@
   "package": "kaptainwutax.techuhc.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "MixinCommandManager",
+    "MixinAnimalEntity"
   ],
   "client": [
-    "ExampleMixin"
+
   ],
   "injectors": {
     "defaultRequire": 1
