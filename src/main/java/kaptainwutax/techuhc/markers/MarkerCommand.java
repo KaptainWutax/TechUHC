@@ -30,9 +30,9 @@ public class MarkerCommand {
                 )
                 .then(literal("start")
                         .executes(context -> start(context, 0, -1))
-                        .then(argument("timestampCount", integer())
+                        .then(argument("markerCount", integer())
                                 .then(argument("timeOffset", longArg(0))
-                                        .executes(context -> start(context, getInteger(context, "timestampCount"), getLong(context, "timeOffset")))
+                                        .executes(context -> start(context, getInteger(context, "markerCount"), getLong(context, "timeOffset")))
                                 )
                         )
                 );
@@ -46,9 +46,9 @@ public class MarkerCommand {
         return 0;
     }
 
-    private int start(CommandContext<ServerCommandSource> context, int timestampCount, long timeOffset) {
-        if (this.markers.start(timestampCount, timeOffset)) {
-            context.getSource().sendFeedback(MessageUtils.formatMessage("Episode timestamps started with count=" + timestampCount + " and timeOffset=" + timeOffset), true);
+    private int start(CommandContext<ServerCommandSource> context, int markerCount, long timeOffset) {
+        if (this.markers.start(markerCount, timeOffset)) {
+            context.getSource().sendFeedback(MessageUtils.formatMessage("Markers started with count=" + markerCount + " and timeOffset=" + timeOffset), true);
             return 1;
         }
         return 0;
