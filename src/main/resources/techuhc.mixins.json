@@ -7,7 +7,8 @@
     "MixinCommandManager",
     "MixinMinecraftServer",
     "MixinMinecraftDedicatedServer",
-    "MixinSpawnHelper"
+    "MixinSpawnHelper",
+    "MixinServerWorld"
   ],
   "client": [
     "MixinMinecraftClient"
