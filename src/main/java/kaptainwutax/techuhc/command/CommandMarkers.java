@@ -2,7 +2,6 @@ package kaptainwutax.techuhc.command;
 
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
-import kaptainwutax.techuhc.MessageUtils;
 import kaptainwutax.techuhc.TechUHC;
 import net.minecraft.server.command.ServerCommandSource;
 
@@ -13,14 +12,20 @@ import static com.mojang.brigadier.arguments.LongArgumentType.longArg;
 import static net.minecraft.server.command.CommandManager.argument;
 import static net.minecraft.server.command.CommandManager.literal;
 
-public class CommandMarkers {
+public class CommandMarkers extends Command {
 
-    public static LiteralArgumentBuilder<ServerCommandSource> getCommand() {
-        LiteralArgumentBuilder<ServerCommandSource> builder = literal("markers");
+    @Override
+    public String getName() {
+        return "markers";
+    }
 
-        //Sender needs a permission level of 2.
-        builder.requires((sender) -> sender.hasPermissionLevel(2));
+    @Override
+    public int getRequiredPermissionLevel() {
+        return 2;
+    }
 
+    @Override
+    public void build(LiteralArgumentBuilder<ServerCommandSource> builder) {
         builder
                 .then(literal("set")
                         .then(literal("interval")
@@ -37,24 +42,26 @@ public class CommandMarkers {
                                 )
                         )
                 );
-
-        return builder;
     }
 
-    private static int setInterval(CommandContext<ServerCommandSource> context, int interval) {
+    @Override
+    public boolean isDedicatedServerOnly() {
+        return false;
+    }
+
+    private int setInterval(CommandContext<ServerCommandSource> context, int interval) {
         if (TechUHC.getMarkers().setInterval(interval)) {
-            context.getSource().sendFeedback(MessageUtils.formatMessage("Interval set to " + interval + " second(s)"), true);
+            this.sendFeedback(context, "Interval set to " + interval + " second(s)", true);
             return 1;
         }
         return 0;
     }
 
-    private static int start(CommandContext<ServerCommandSource> context, int markerCount, long timeOffset) {
+    private int start(CommandContext<ServerCommandSource> context, int markerCount, long timeOffset) {
         if (TechUHC.getMarkers().start(markerCount, timeOffset)) {
-            context.getSource().sendFeedback(MessageUtils.formatMessage("Markers started with count=" + markerCount + " and timeOffset=" + timeOffset), true);
+            this.sendFeedback(context, "Markers started with count=" + markerCount + " and timeOffset=" + timeOffset, true);
             return 1;
         }
         return 0;
     }
-
 }

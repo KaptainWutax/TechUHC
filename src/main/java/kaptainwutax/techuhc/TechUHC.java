@@ -1,5 +1,8 @@
 package kaptainwutax.techuhc;
 
+import kaptainwutax.techuhc.command.CommandManager;
+import kaptainwutax.techuhc.command.CommandMarkers;
+import kaptainwutax.techuhc.command.CommandRule;
 import kaptainwutax.techuhc.markers.Markers;
 import net.fabricmc.api.ModInitializer;
 
@@ -11,6 +14,8 @@ public class TechUHC implements ModInitializer {
     @Override
     public void onInitialize() {
         MARKERS.onInitialize();
+        CommandManager.INSTANCE.registerCommand(new CommandRule());
+        CommandManager.INSTANCE.registerCommand(new CommandMarkers());
     }
 
     public static Markers getMarkers() {
