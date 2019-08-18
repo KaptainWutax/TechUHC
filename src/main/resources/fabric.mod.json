@@ -19,7 +19,7 @@
 
   "environment": "*",
   "entrypoints": {
-    "server": [
+    "main": [
       "kaptainwutax.techuhc.TechUHC",
       "kaptainwutax.techuhc.markers.Markers"
     ]
