@@ -1,6 +1,7 @@
 package kaptainwutax.techuhc.markers;
 
 import kaptainwutax.techuhc.MessageUtils;
+import kaptainwutax.techuhc.command.CommandMarkers;
 import kaptainwutax.techuhc.event.ServerStartEvent;
 import kaptainwutax.techuhc.event.ServerStopEvent;
 import kaptainwutax.techuhc.event.ServerTickEvent;
@@ -10,7 +11,8 @@ import net.minecraft.server.MinecraftServer;
 
 import java.util.concurrent.ThreadFactory;
 
-public class Markers implements ModInitializer {
+public class Markers {
+
     private static final ThreadFactory MARKER_RUNNER_FACTORY = runnable -> new Thread(runnable, "Markers");
 
     private MinecraftServer server;
@@ -25,7 +27,6 @@ public class Markers implements ModInitializer {
     /**
      * Entry point
      */
-    @Override
     public void onInitialize() {
 
         // Grab a MinecraftServer instance
@@ -52,9 +53,6 @@ public class Markers implements ModInitializer {
                          ", markerCount=" + this.markerCount + ", timeOffset=" + timeOffset);
             }
         });
-
-        // Register the marker command
-        Commands.registerCommand(new MarkersCommand(this).getCommand());
     }
 
     /**

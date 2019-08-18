@@ -20,8 +20,7 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "kaptainwutax.techuhc.TechUHC",
-      "kaptainwutax.techuhc.markers.Markers"
+      "kaptainwutax.techuhc.TechUHC"
     ]
   },
   "mixins": [

@@ -18,7 +18,7 @@ public abstract class MixinCommandManager {
 
     @Inject(method = "<init>", at = @At("RETURN"))
     private void onRegister(boolean dedicatedServer, CallbackInfo ci) {
-        Commands.registerCommands(this.dispatcher);
+        Commands.registerCommands(this.dispatcher, dedicatedServer);
     }
 
 }

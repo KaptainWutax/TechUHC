@@ -2,20 +2,22 @@ package kaptainwutax.techuhc.init;
 
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
+import kaptainwutax.techuhc.command.CommandMarkers;
+import kaptainwutax.techuhc.command.CommandRule;
 import net.minecraft.server.command.ServerCommandSource;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Commands {
-    private static final List<LiteralArgumentBuilder<ServerCommandSource>> commands = new ArrayList<>();
 
-    public static void registerCommand(LiteralArgumentBuilder<ServerCommandSource> command) {
-        commands.add(command);
+    public static void registerCommands(CommandDispatcher<ServerCommandSource> dispatcher, boolean dedicatedServer) {
+        registerCommand(dispatcher, CommandRule.getCommand());
+        Commands.registerCommand(dispatcher, new CommandMarkers().getCommand());
+        if(dedicatedServer) {
+            //Register dedicated server commands here.
+        }
     }
 
-    public static void registerCommands(CommandDispatcher<ServerCommandSource> dispatcher) {
-        commands.forEach(dispatcher::register);
+    private static void registerCommand(CommandDispatcher<ServerCommandSource> dispatcher, LiteralArgumentBuilder<ServerCommandSource> command) {
+        dispatcher.register(command);
     }
 
 }

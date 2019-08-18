@@ -1,8 +1,10 @@
-package kaptainwutax.techuhc.markers;
+package kaptainwutax.techuhc.command;
 
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
 import kaptainwutax.techuhc.MessageUtils;
+import kaptainwutax.techuhc.TechUHC;
+import kaptainwutax.techuhc.markers.Markers;
 import net.minecraft.server.command.ServerCommandSource;
 
 import static com.mojang.brigadier.arguments.IntegerArgumentType.getInteger;
@@ -12,12 +14,7 @@ import static com.mojang.brigadier.arguments.LongArgumentType.longArg;
 import static net.minecraft.server.command.CommandManager.argument;
 import static net.minecraft.server.command.CommandManager.literal;
 
-public class MarkersCommand {
-    private final Markers markers;
-
-    public MarkersCommand(Markers markers) {
-        this.markers = markers;
-    }
+public class CommandMarkers {
 
     public LiteralArgumentBuilder<ServerCommandSource> getCommand() {
         LiteralArgumentBuilder<ServerCommandSource> builder = literal("markers");
@@ -46,7 +43,7 @@ public class MarkersCommand {
     }
 
     private int setInterval(CommandContext<ServerCommandSource> context, int interval) {
-        if (this.markers.setInterval(interval)) {
+        if (TechUHC.getMarkers().setInterval(interval)) {
             context.getSource().sendFeedback(MessageUtils.formatMessage("Interval set to " + interval + " second(s)"), true);
             return 1;
         }
@@ -54,10 +51,11 @@ public class MarkersCommand {
     }
 
     private int start(CommandContext<ServerCommandSource> context, int markerCount, long timeOffset) {
-        if (this.markers.start(markerCount, timeOffset)) {
+        if (TechUHC.getMarkers().start(markerCount, timeOffset)) {
             context.getSource().sendFeedback(MessageUtils.formatMessage("Markers started with count=" + markerCount + " and timeOffset=" + timeOffset), true);
             return 1;
         }
         return 0;
     }
+
 }
