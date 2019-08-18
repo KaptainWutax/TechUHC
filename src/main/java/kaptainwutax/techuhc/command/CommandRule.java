@@ -3,54 +3,53 @@ package kaptainwutax.techuhc.command;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
 import kaptainwutax.techuhc.Rules;
-import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
-import net.minecraft.text.LiteralText;
 
 import java.util.Map;
 
-public class CommandRule {
+import static net.minecraft.server.command.CommandManager.literal;
 
-    public static LiteralArgumentBuilder<ServerCommandSource> getCommand() {
-        //Creates the builder with the main argument literal.
-        LiteralArgumentBuilder<ServerCommandSource> builder = CommandManager.literal("rule");
-
-        //Sender needs a permission level of 2.
-        builder.requires((sender) -> sender.hasPermissionLevel(2));
-
-        for (Map.Entry<String, Boolean> entry : Rules.BOOLEAN_RULES.entrySet()) {
-            builder.then(CommandManager.literal(entry.getKey())
-                    .executes(context -> getRule(context, entry.getKey()))
-                    .then(CommandManager.literal("false").executes(context -> setRule(context, entry.getKey(), false)))
-                    .then(CommandManager.literal("true").executes(context -> setRule(context, entry.getKey(), true)))
-            );
-        }
-
-        return builder;
+public class CommandRule extends Command {
+    @Override
+    public String getName() {
+        return "rule";
     }
 
-    private static int getRule(CommandContext<ServerCommandSource> context, String key) {
-        ServerCommandSource source = context.getSource();
-        sendMessage(source, "Rule [" + key + "] has a value of " + Rules.BOOLEAN_RULES.get(key) + ".", false);
+    @Override
+    public int getRequiredPermissionLevel() {
+        return 2;
+    }
+
+    @Override
+    public void build(LiteralArgumentBuilder<ServerCommandSource> builder) {
+        for (Map.Entry<String, Boolean> entry : Rules.BOOLEAN_RULES.entrySet()) {
+            builder.then(literal(entry.getKey())
+                    .executes(context -> getRule(context, entry.getKey()))
+                    .then(literal("false").executes(context -> setRule(context, entry.getKey(), false)))
+                    .then(literal("true").executes(context -> setRule(context, entry.getKey(), true)))
+            );
+        }
+    }
+
+    @Override
+    public boolean isDedicatedServerOnly() {
+        return false;
+    }
+
+    private int getRule(CommandContext<ServerCommandSource> context, String key) {
+        this.sendFeedback(context, "Rule [" + key + "] has a value of " + Rules.BOOLEAN_RULES.get(key) + ".", false);
         return 0;
     }
 
-    private static int setRule(CommandContext<ServerCommandSource> context, String key, boolean value) {
-        ServerCommandSource source = context.getSource();
-
+    private int setRule(CommandContext<ServerCommandSource> context, String key, boolean value) {
         if (!Rules.BOOLEAN_RULES.containsKey(key)) {
-            sendMessage(source, "Unknown rule [" + key + "].", false);
+            this.sendFeedback(context, "Unknown rule [" + key + "].", false);
             return 1;
         }
 
         boolean originalValue = Rules.BOOLEAN_RULES.put(key, value);
-        sendMessage(source, "Rule [" + key + "] has been updated from " + originalValue + " to " + value + ".", true);
+        this.sendFeedback(context, "Rule [" + key + "] has been updated from " + originalValue + " to " + value + ".", true);
 
         return 0;
     }
-
-    private static void sendMessage(ServerCommandSource source, String message, boolean showOps) {
-        source.sendFeedback(new LiteralText(message), showOps);
-    }
-
 }
