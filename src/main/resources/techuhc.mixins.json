@@ -8,7 +8,8 @@
     "MixinMinecraftServer",
     "MixinMinecraftDedicatedServer",
     "MixinSpawnHelper",
-    "MixinServerWorld"
+    "MixinServerWorld",
+    "MixinServerChunkManager"
   ],
   "client": [
     "MixinMinecraftClient"
