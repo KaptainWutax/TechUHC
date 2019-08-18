@@ -45,7 +45,7 @@ public class CommandRule {
         }
 
         boolean originalValue = Rules.BOOLEAN_RULES.put(key, value);
-        sendMessage(source, "Rule [" + key + "] has been updated from " + originalValue + " to " + value + ".", false);
+        sendMessage(source, "Rule [" + key + "] has been updated from " + originalValue + " to " + value + ".", true);
 
         return 0;
     }

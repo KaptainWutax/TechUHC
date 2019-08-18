@@ -12,12 +12,12 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(CommandManager.class)
-public class MixinCommandManager {
+public abstract class MixinCommandManager {
 
     @Shadow @Final private CommandDispatcher<ServerCommandSource> dispatcher;
 
     @Inject(method = "<init>", at = @At("RETURN"))
-    private void onRegister(boolean boolean_1, CallbackInfo ci) {
+    private void onRegister(boolean dedicatedServer, CallbackInfo ci) {
         Commands.registerCommands(this.dispatcher);
     }
 
