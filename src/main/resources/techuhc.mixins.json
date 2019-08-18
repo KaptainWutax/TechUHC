@@ -5,7 +5,8 @@
   "mixins": [
     "MixinAnimalEntity",
     "MixinCommandManager",
-    "MixinMinecraftServer"
+    "MixinMinecraftServer",
+    "MixinMinecraftDedicatedServer"
   ],
   "client": [
 
