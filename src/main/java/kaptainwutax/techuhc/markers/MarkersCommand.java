@@ -20,7 +20,12 @@ public class MarkersCommand {
     }
 
     public LiteralArgumentBuilder<ServerCommandSource> getCommand() {
-        return literal("markers")
+        LiteralArgumentBuilder<ServerCommandSource> builder = literal("markers");
+
+        //Sender needs a permission level of 2.
+        builder.requires((sender) -> sender.hasPermissionLevel(2));
+
+        builder
                 .then(literal("set")
                         .then(literal("interval")
                                 .then(argument("interval", integer(1))
@@ -36,6 +41,8 @@ public class MarkersCommand {
                                 )
                         )
                 );
+
+        return builder;
     }
 
     private int setInterval(CommandContext<ServerCommandSource> context, int interval) {
