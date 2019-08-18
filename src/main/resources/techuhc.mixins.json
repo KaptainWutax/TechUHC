@@ -3,8 +3,10 @@
   "package": "kaptainwutax.techuhc.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "MixinAnimalEntity",
     "MixinCommandManager",
-    "MixinAnimalEntity"
+    "MixinMinecraftServer",
+    "MixinMinecraftDedicatedServer"
   ],
   "client": [
 
