@@ -6,7 +6,8 @@
     "MixinAnimalEntity",
     "MixinCommandManager",
     "MixinMinecraftServer",
-    "MixinMinecraftDedicatedServer"
+    "MixinMinecraftDedicatedServer",
+    "MixinSpawnHelper"
   ],
   "client": [
     "MixinMinecraftClient"

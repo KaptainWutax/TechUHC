@@ -15,11 +15,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class MixinMinecraftClient {
 
     @Shadow protected int attackCooldown;
-
     @Shadow public Screen currentScreen;
-
     @Shadow public GameOptions options;
-
     @Shadow public Mouse mouse;
 
     @Inject(at = @At("TAIL"), method = "tick()V")
