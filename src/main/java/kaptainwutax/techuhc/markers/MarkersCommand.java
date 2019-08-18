@@ -12,15 +12,15 @@ import static com.mojang.brigadier.arguments.LongArgumentType.longArg;
 import static net.minecraft.server.command.CommandManager.argument;
 import static net.minecraft.server.command.CommandManager.literal;
 
-public class MarkerCommand {
+public class MarkersCommand {
     private final Markers markers;
 
-    public MarkerCommand(Markers markers) {
+    public MarkersCommand(Markers markers) {
         this.markers = markers;
     }
 
     public LiteralArgumentBuilder<ServerCommandSource> getCommand() {
-        return literal("marker")
+        return literal("markers")
                 .then(literal("set")
                         .then(literal("interval")
                                 .then(argument("interval", integer(1))

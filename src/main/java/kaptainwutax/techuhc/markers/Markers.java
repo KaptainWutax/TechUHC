@@ -54,7 +54,7 @@ public class Markers implements ModInitializer {
         });
 
         // Register the marker command
-        Commands.registerCommand(new MarkerCommand(this).getCommand());
+        Commands.registerCommand(new MarkersCommand(this).getCommand());
     }
 
     /**
