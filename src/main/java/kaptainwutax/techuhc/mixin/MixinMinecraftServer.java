@@ -11,17 +11,17 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(MinecraftServer.class)
 public abstract class MixinMinecraftServer {
-    @Inject(at = @At("INVOKE"), method = "start")
+    @Inject(at = @At("RETURN"), method = "start")
     private void start(CallbackInfo info) {
         ServerStartEvent.EVENT.invoker().onServerStart((MinecraftServer) (Object) this);
     }
 
-    @Inject(at = @At("INVOKE"), method = "tick")
+    @Inject(at = @At("HEAD"), method = "tick")
     private void tick(CallbackInfo info) {
         ServerTickEvent.EVENT.invoker().onServerTick((MinecraftServer) (Object) this);
     }
 
-    @Inject(at = @At("INVOKE"), method = "shutdown")
+    @Inject(at = @At("HEAD"), method = "shutdown")
     private void stop(CallbackInfo info) {
         ServerStopEvent.EVENT.invoker().onServerStop((MinecraftServer) (Object) this);
     }
