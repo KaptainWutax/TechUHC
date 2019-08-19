@@ -14,7 +14,7 @@ public class TechUHC implements ModInitializer {
 
     @Override
     public void onInitialize() {
-        MARKERS.onInitialize();
+        //MARKERS.onInitialize();
         CommandManager.INSTANCE.registerCommand(new CommandBooleanRule());
         CommandManager.INSTANCE.registerCommand(new CommandIntegerRule());
         CommandManager.INSTANCE.registerCommand(new CommandMarkers());
