@@ -9,8 +9,8 @@
     "MixinMinecraftDedicatedServer",
     "MixinSpawnHelper",
     "MixinServerWorld",
-    "MixinServerTickScheduler",
-    "MixinThreadedAnvilChunkStorage"
+    "MixinThreadedAnvilChunkStorage",
+    "MixinChunkTicketManager"
   ],
   "client": [
     "MixinMinecraftClient"

@@ -38,9 +38,9 @@ public abstract class MixinThreadedAnvilChunkStorage {
         if(this.world.getTime() % 900 == 0) {
             LongIterator longIterator_1 = this.unloadedChunks.iterator();
 
-            for(int int_1 = 0; longIterator_1.hasNext() && (int_1 < 100 || this.unloadedChunks.size() > 2000); longIterator_1.remove()) {
+            for(int int_1 = 0; longIterator_1.hasNext() && (int_1 < 100 || this.unloadedChunks.size() > 1000); longIterator_1.remove()) {
                 long long_1 = longIterator_1.nextLong();
-                ChunkHolder chunkHolder_1 = (ChunkHolder) this.currentChunkHolders.remove(long_1);
+                ChunkHolder chunkHolder_1 = this.currentChunkHolders.remove(long_1);
                 if(chunkHolder_1 != null) {
                     this.field_18807.put(long_1, chunkHolder_1);
                     this.chunkHolderListDirty = true;
@@ -50,7 +50,8 @@ public abstract class MixinThreadedAnvilChunkStorage {
             }
 
             Runnable runnable_1;
-            while(booleanSupplier.getAsBoolean() && (runnable_1 = (Runnable) this.field_19343.poll()) != null) {
+
+            while(booleanSupplier.getAsBoolean() && (runnable_1 = this.field_19343.poll()) != null) {
                 runnable_1.run();
             }
         }
